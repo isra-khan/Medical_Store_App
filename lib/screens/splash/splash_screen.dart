@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:quickmedicalapp/routes/routes.dart';
 import 'package:quickmedicalapp/screens/onboarding_screens.dart/walk_through_scren.dart';
 import 'package:quickmedicalapp/utils/colorconstraint.dart';
 
@@ -20,10 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // Timer for 3 seconds
     Timer(Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => WalkThroughScreen()),
-      );
+      Navigator.pushReplacementNamed(context, Routes.walkthrough);
     });
 
     super.initState();

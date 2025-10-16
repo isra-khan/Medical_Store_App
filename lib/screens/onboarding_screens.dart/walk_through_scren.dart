@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // make sure correct import
+import 'package:quickmedicalapp/routes/routes.dart';
 import 'package:quickmedicalapp/screens/models/walkthrough_model.dart';
 import 'package:quickmedicalapp/utils/colorconstraint.dart';
 
@@ -65,6 +66,7 @@ class _WalkThroughScreenState extends State<WalkThroughScreen>
         curve: Curves.ease,
       );
     } else {
+      Navigator.pushNamed(context, Routes.quickNumber);
       // Navigate to HomeScreen or login
     }
   }

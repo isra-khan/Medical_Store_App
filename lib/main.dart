@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quickmedicalapp/routes/appapges.dart';
+import 'package:quickmedicalapp/routes/routes.dart';
 import 'package:quickmedicalapp/screens/splash/splash_screen.dart';
 
 void main() {
@@ -13,10 +15,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      initialRoute: Routes.splash,
+      routes: AppPages.routes,
+
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: SplashScreen(),
     );
   }
 }
