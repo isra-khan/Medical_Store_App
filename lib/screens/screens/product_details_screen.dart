@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quickmedicalapp/routes/routes.dart';
+import 'package:quickmedicalapp/screens/splash/widgets/custom_button.dart';
 import 'package:quickmedicalapp/utils/colorconstraint.dart';
 import 'package:quickmedicalapp/utils/responsiveness.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -137,7 +139,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ],
         ),
 
-        // 2. FIRST REVIEW SECTION
         const SizedBox(height: 30),
         _buildReviewTile(
           rating: 4.2,
@@ -258,6 +259,33 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
+  Widget _buildTopRow() {
+    return Padding(
+      padding: EdgeInsetsGeometry.symmetric(vertical: 14),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Icon(Icons.arrow_back, color: Colors.black),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              SvgPicture.asset(
+                'assets/icons/notification.svg',
+                color: Colors.black,
+              ),
+              SizedBox(width: 8),
+              SvgPicture.asset(
+                'assets/icons/shopping.svg',
+                color: Colors.black,
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Responsive.init(context);
@@ -271,6 +299,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              _buildTopRow(),
               const SizedBox(height: 16), // Top spacing
 
               Text(
@@ -511,6 +540,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               SizedBox(height: Responsive.h(2)),
               _buildRatingSection(),
               SizedBox(height: Responsive.h(2)),
+              CustomButton(
+                title: 'Go to Cart',
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.add_cart);
+                },
+                bgColor: ColorConstraint.primaryColor,
+                textColor: ColorConstraint.secondaryColor,
+              ),
+              SizedBox(height: 20),
             ],
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:quickmedicalapp/models/categories.dart';
+import 'package:quickmedicalapp/routes/routes.dart';
 import 'package:quickmedicalapp/screens/splash/widgets/custom_product_widget.dart';
 import 'package:quickmedicalapp/screens/splash/widgets/custom_searchbar.dart';
 import 'package:quickmedicalapp/utils/colorconstraint.dart';
@@ -269,12 +270,17 @@ class HomeScreen extends StatelessWidget {
         childAspectRatio: 0.75,
       ),
       itemBuilder: (context, index) {
-        return CustomProductWidget(
-          imagePath: 'assets/images/product.png',
-          title: 'Accu-check Active',
-          subtitle: 'Test Strip',
-          price: 200,
-          rating: 5,
+        return GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, Routes.product_details);
+          },
+          child: CustomProductWidget(
+            imagePath: 'assets/images/product.png',
+            title: 'Accu-check Active',
+            subtitle: 'Test Strip',
+            price: 200,
+            rating: 5,
+          ),
         );
       },
     );
