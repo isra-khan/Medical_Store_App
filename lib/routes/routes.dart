@@ -6,4 +6,5 @@ class Routes {
   static String product_details = '/productdetails';
   static String add_cart = "/cart";
   static String profile = "/profile";
+  static String main = '/main';
 }

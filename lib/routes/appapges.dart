@@ -7,6 +7,7 @@ import 'package:quickmedicalapp/screens/screens/home_screen.dart';
 import 'package:quickmedicalapp/screens/screens/product_details_screen.dart';
 import 'package:quickmedicalapp/screens/screens/profile_screen.dart';
 import 'package:quickmedicalapp/screens/splash/splash_screen.dart';
+import 'package:quickmedicalapp/screens/splash/widgets/custom_navigation_bar.dart';
 
 class AppPages {
   static final Map<String, WidgetBuilder> routes = {
@@ -18,5 +19,6 @@ class AppPages {
     Routes.product_details: (context) => ProductDetailsScreen(),
     Routes.add_cart: (context) => CartScreen(),
     Routes.profile: (context) => ProfileScreen(),
+    Routes.main: (context) => CustomNavBarScreen(),
   };
 }

@@ -52,7 +52,7 @@ class ProfileScreen extends StatelessWidget {
                           ),
                           image: const DecorationImage(
                             image: AssetImage(
-                              'assets/dr.jpg',
+                              'assets/images/dr.jpg',
                             ), // Replace with your image asset or NetworkImage
                             fit: BoxFit.cover,
                           ),

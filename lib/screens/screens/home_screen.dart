@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: ColorConstraint.secondaryColor.withOpacity(0.9),
+        backgroundColor: Color(0xffF7FBFF),
         body: SingleChildScrollView(
           child: Column(
             children: [

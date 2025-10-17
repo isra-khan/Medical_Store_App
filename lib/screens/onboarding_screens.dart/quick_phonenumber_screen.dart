@@ -13,7 +13,7 @@ class QuickPhoneNumberScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstraint.secondaryColor,
+      backgroundColor: Color(0xffF7FBFF),
       body: Padding(
         padding: EdgeInsetsGeometry.symmetric(horizontal: 20),
         child: Column(
@@ -21,8 +21,8 @@ class QuickPhoneNumberScreen extends StatelessWidget {
           children: [
             SvgPicture.asset(
               'assets/icons/qiuckmedical_logo.svg',
-              width: 100,
-              height: 100,
+              width: 150,
+              height: 150,
             ),
 
             Text(
@@ -33,6 +33,7 @@ class QuickPhoneNumberScreen extends StatelessWidget {
                 fontWeight: FontWeight.w900,
               ),
             ),
+            SizedBox(height: 20),
             Text(
               'Please Enter your Mobile Number to Login/Sign Up',
               style: TextStyle(
@@ -50,7 +51,7 @@ class QuickPhoneNumberScreen extends StatelessWidget {
               borderRadius: 56,
               title: 'Continue',
               onPressed: () {
-                Navigator.pushNamed(context, Routes.home);
+                Navigator.pushNamed(context, Routes.main);
               },
               bgColor: ColorConstraint.primaryColor,
               textColor: ColorConstraint.secondaryColor,

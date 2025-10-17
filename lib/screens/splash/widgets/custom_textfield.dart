@@ -36,7 +36,10 @@ class CustomTextField extends StatelessWidget {
               )
             : null,
         hintText: hintText, // 👈 replaces labelText
-        hintStyle: TextStyle(color: Colors.black.withOpacity(0.45)),
+        hintStyle: TextStyle(
+          color: Colors.black.withOpacity(0.45),
+          fontSize: 17,
+        ),
         filled: true,
         fillColor: Colors.white.withOpacity(0.1),
 
