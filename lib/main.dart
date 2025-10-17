@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quickmedicalapp/routes/appapges.dart';
 import 'package:quickmedicalapp/routes/routes.dart';
-import 'package:quickmedicalapp/screens/splash/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());

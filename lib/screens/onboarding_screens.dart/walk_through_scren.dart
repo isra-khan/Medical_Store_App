@@ -5,7 +5,7 @@ import 'package:quickmedicalapp/screens/models/walkthrough_model.dart';
 import 'package:quickmedicalapp/utils/colorconstraint.dart';
 
 class WalkThroughScreen extends StatefulWidget {
-  const WalkThroughScreen({Key? key}) : super(key: key);
+  const WalkThroughScreen({super.key});
 
   @override
   State<WalkThroughScreen> createState() => _WalkThroughScreenState();
@@ -134,10 +134,10 @@ class _WalkThroughScreenState extends State<WalkThroughScreen>
         TextButton(
           onPressed: _onSkip,
           style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(
+            foregroundColor: WidgetStateProperty.all(
               ColorConstraint.lightPrimaryColor,
             ),
-            textStyle: MaterialStateProperty.all(
+            textStyle: WidgetStateProperty.all(
               const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
             ),
           ),
@@ -147,10 +147,10 @@ class _WalkThroughScreenState extends State<WalkThroughScreen>
         TextButton(
           onPressed: _onNext,
           style: ButtonStyle(
-            foregroundColor: MaterialStateProperty.all(
+            foregroundColor: WidgetStateProperty.all(
               ColorConstraint.primaryColor,
             ),
-            textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 16)),
+            textStyle: WidgetStateProperty.all(const TextStyle(fontSize: 16)),
           ),
           child: Text(
             currentIndex == walkthroughList.length - 1 ? "Done" : "Next",

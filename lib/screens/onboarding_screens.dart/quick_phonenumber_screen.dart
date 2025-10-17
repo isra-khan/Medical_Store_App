@@ -6,7 +6,9 @@ import 'package:quickmedicalapp/screens/splash/widgets/custom_textfield.dart';
 import 'package:quickmedicalapp/utils/colorconstraint.dart';
 
 class QuickPhoneNumberScreen extends StatelessWidget {
-  TextEditingController _nameControler = new TextEditingController();
+  final TextEditingController _nameControler = TextEditingController();
+
+  QuickPhoneNumberScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

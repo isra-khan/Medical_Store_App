@@ -1,346 +1,282 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:quickmedicalapp/models/categories.dart';
+import 'package:quickmedicalapp/screens/splash/widgets/custom_product_widget.dart';
+import 'package:quickmedicalapp/screens/splash/widgets/custom_searchbar.dart';
+import 'package:quickmedicalapp/utils/colorconstraint.dart';
+import 'package:quickmedicalapp/utils/responsiveness.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-// --- Custom Widget Methods (Sections) ---
+class HomeScreen extends StatelessWidget {
+  final TextEditingController medicineController = TextEditingController();
 
-Widget _buildHeader(BuildContext context) {
-  return Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-        fit: BoxFit.cover,
-        image: AssetImage('assets/images/rectangle_box.png'),
-      ),
-      // You might add a custom shape/border radius if needed
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Top Icons Row
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            // Profile Picture
-            const CircleAvatar(
-              radius: 24,
-              backgroundColor: Colors.white,
-              // Replace with a real image asset
-            ),
-            Row(
-              children: const [
-                Icon(Icons.person_outline, color: Colors.white, size: 28),
-                SizedBox(width: 15),
-                Icon(Icons.mail_outline, color: Colors.white, size: 28),
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
-        // Greetings
-        const Text(
-          "Hi, Shahzeb",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        const Text(
-          "Welcome to Quick Medical Store",
-          style: TextStyle(fontSize: 16, color: Colors.white70),
-        ),
-        const SizedBox(height: 30),
-      ],
-    ),
-  );
-}
+  HomeScreen({super.key});
 
-Widget _buildSearchBar() {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 20),
-    child: TextField(
-      decoration: InputDecoration(
-        hintText: "Search Medicine & Healthcare products",
-        hintStyle: TextStyle(color: Colors.grey[600]),
-        prefixIcon: const Icon(Icons.search, color: Colors.grey),
-        filled: true,
-        fillColor: Colors.white,
-        contentPadding: const EdgeInsets.symmetric(vertical: 15),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(70.0),
-          borderSide: BorderSide.none,
-        ),
+  static List<CategoryModel> categoryList = [
+    CategoryModel(
+      name: "Dental",
+      icon: Icons.medical_services,
+      color: LinearGradient(
+        colors: [Color(0xFFFF70A7), Color(0xFFFF9598)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
       ),
     ),
-  );
-}
-
-Widget _buildCategoryItem(String title, Color color) {
-  return Container(
-    width: 100, // Fixed width for each category card
-    margin: const EdgeInsets.only(right: 15),
-    child: Column(
-      children: [
-        Container(
-          height: 70,
-          width: 70,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: color,
-            // For a gradient look, use:
-            // gradient: LinearGradient(
-            //   colors: [color, color.withOpacity(0.5)],
-            //   begin: Alignment.topLeft,
-            //   end: Alignment.bottomRight,
-            // ),
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-      ],
-    ),
-  );
-}
-
-Widget _buildTopCategories() {
-  return Padding(
-    padding: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          "Top Categories",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 15),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              // You can replace these with a map/list if data is dynamic
-              _buildCategoryItem("Dental", Colors.pinkAccent),
-              _buildCategoryItem("Wellness", Colors.greenAccent),
-              _buildCategoryItem("Homeo", Colors.orangeAccent),
-              _buildCategoryItem("Eye care", Colors.blueAccent),
-              _buildCategoryItem("First Aid", Colors.redAccent),
-            ],
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _buildPromoBanner() {
-  return Container(
-    height: 150,
-    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-    decoration: BoxDecoration(
-      color: Colors.lightBlue[50],
-      borderRadius: BorderRadius.circular(15),
-      // Use an actual image for the background
-      image: const DecorationImage(
-        image: AssetImage(
-          'assets/banner_placeholder.png',
-        ), // Replace with your image asset
-        fit: BoxFit.cover,
-        alignment: Alignment.centerRight,
+    CategoryModel(
+      name: "Wellness",
+      icon: Icons.health_and_safety,
+      color: LinearGradient(
+        colors: [Color(0xFF19E5A5), Color(0xFF15BD92)],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
       ),
     ),
-    child: Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Text(
-            "Save extra on every order",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 5),
-          Text(
-            "Etiam mollis metus non faucibus.",
-            style: TextStyle(fontSize: 14),
-          ),
-        ],
+    CategoryModel(
+      name: "Homeo",
+      icon: Icons.local_hospital,
+      color: LinearGradient(
+        colors: [Color(0xffFFC06F), Color(0xffFF793A)],
+        begin: Alignment.topLeft,
+        end: Alignment.topCenter,
       ),
     ),
-  );
-}
-
-Widget _buildProductCard() {
-  return Card(
-    elevation: 2,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Image Placeholder
-        Container(
-          height: 120,
-          decoration: BoxDecoration(
-            color: Colors.grey[200],
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
-            // Use an actual image asset here
-          ),
-          child: const Center(child: Icon(Icons.medication_liquid, size: 40)),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Accu-check Active",
-                style: TextStyle(fontWeight: FontWeight.w600),
-              ),
-              const Text(
-                "Test Strip",
-                style: TextStyle(fontSize: 13, color: Colors.grey),
-              ),
-              const SizedBox(height: 5),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Text(
-                    "Rs.112",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.deepPurple,
-                    ),
-                  ),
-                  Row(
-                    children: const [
-                      Icon(Icons.star, color: Colors.amber, size: 16),
-                      Text("2"),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-      ],
+    CategoryModel(
+      name: "Eye care",
+      icon: Icons.local_hospital,
+      color: LinearGradient(
+        colors: [Color(0xff4DB7FF), Color(0xff3E7DFF)],
+        begin: Alignment.topLeft,
+        end: Alignment.topCenter,
+      ),
     ),
-  );
-}
-
-Widget _buildDealsOfTheDay() {
-  return Padding(
-    padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Title Row
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Text(
-              "Deals of the Day",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text("More", style: TextStyle(color: Colors.purple)),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        // Products Grid
-        GridView.builder(
-          shrinkWrap: true,
-          physics:
-              const NeverScrollableScrollPhysics(), // Important for nested scroll views
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 15,
-            mainAxisSpacing: 15,
-            childAspectRatio: 0.75, // Adjust this to fit the card content
-          ),
-          itemCount: 4, // Example: 4 products
-          itemBuilder: (context, index) {
-            return _buildProductCard();
-          },
-        ),
-      ],
-    ),
-  );
-}
-
-// --- Main Screen Widget ---
-
-class MedicalStoreHomeScreen extends StatelessWidget {
-  const MedicalStoreHomeScreen({super.key});
+  ];
 
   @override
   Widget build(BuildContext context) {
-    // Determine the height of the purple header part
-    double headerHeight = 250;
+    Responsive.init(context);
 
-    return Scaffold(
-      backgroundColor: Color(0xffF7FBFF),
-
-      // Custom Bottom Navigation Bar (resembling the image)
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-
-        unselectedItemColor: Colors.grey,
-        showSelectedLabels: false,
-        showUnselectedLabels: false,
-        items: <BottomNavigationBarItem>[
-          const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_none),
-            label: 'Notifications',
-          ),
-          BottomNavigationBarItem(
-            icon: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: const BoxDecoration(
-                color: Colors.deepPurple,
-                shape: BoxShape.circle,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: ColorConstraint.secondaryColor.withOpacity(0.9),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildHeader(),
+              _buildSearchBar(),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildTopCategories(),
+                    SizedBox(height: Responsive.h(3)),
+                    _buildBanner(),
+                    SizedBox(height: Responsive.h(3)),
+                    _buildDealsHeader(),
+                    _buildDealsGrid(),
+                  ],
+                ),
               ),
-              child: const Icon(Icons.add, color: Colors.white),
-            ),
-            label: 'Add',
+            ],
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.mail_outline),
-            label: 'Mail',
-          ),
-          const BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Profile',
-          ),
-        ],
+        ),
       ),
+    );
+  }
 
-      body: SingleChildScrollView(
-        child: Stack(
+  Widget _buildHeader() {
+    return Container(
+      width: double.infinity,
+      height: 220,
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Color(0xFF4B6EF6), Color(0xFF4157FF)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(30),
+          bottomRight: Radius.circular(30),
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // 1. Purple Header Background
-            SizedBox(height: headerHeight, child: _buildHeader(context)),
-
-            // 2. Content (Search Bar and below)
-            Padding(
-              padding: EdgeInsets.only(
-                top: headerHeight - 20,
-              ), // Adjust to position search bar slightly over the purple background
-              child: Column(
-                children: [
-                  _buildSearchBar(),
-                  const SizedBox(height: 10), // Spacing after search bar
-                  _buildTopCategories(),
-                  _buildPromoBanner(),
-                  _buildDealsOfTheDay(),
-                  const SizedBox(height: 50), // Extra space at the bottom
-                ],
+            _buildTopRow(),
+            SizedBox(height: Responsive.h(2)),
+            Text(
+              "Hi, Isra",
+              style: TextStyle(
+                color: ColorConstraint.secondaryColor,
+                fontSize: Responsive.sp(24),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: Responsive.h(2)),
+            Text(
+              "Welcome to Quick Medical Store",
+              style: TextStyle(
+                color: ColorConstraint.secondaryColor,
+                fontSize: Responsive.sp(14),
               ),
             ),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildTopRow() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        const CircleAvatar(
+          radius: 24,
+          backgroundImage: AssetImage('assets/images/profile.jpg'),
+        ),
+        Row(
+          children: [
+            SvgPicture.asset('assets/icons/notification.svg'),
+            SizedBox(width: 8),
+            SvgPicture.asset('assets/icons/shopping.svg'),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildSearchBar() {
+    return Transform.translate(
+      offset: const Offset(0, -25),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: CustomSearchBar(
+          controller: medicineController,
+          onChanged: (value) {},
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTopCategories() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Top Categories',
+          style: TextStyle(
+            color: ColorConstraint.textColor,
+            fontWeight: FontWeight.w600,
+            fontSize: Responsive.sp(14),
+          ),
+        ),
+        SizedBox(height: Responsive.h(2)),
+        SizedBox(
+          height: 130,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: categoryList.length,
+            itemBuilder: (context, index) {
+              final category = categoryList[index];
+              return Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 10,
+                    ),
+                    decoration: BoxDecoration(
+                      color: ColorConstraint.secondaryColor,
+                      borderRadius: BorderRadius.circular(70),
+                    ),
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 60,
+                          height: 60,
+                          decoration: BoxDecoration(
+                            gradient: category.color,
+                            shape: BoxShape.circle,
+                          ),
+                        ),
+                        SizedBox(height: Responsive.h(1)),
+                        Text(
+                          category.name,
+                          style: TextStyle(
+                            color: ColorConstraint.textColor,
+                            fontSize: Responsive.sp(8),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                ],
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildBanner() {
+    return Image.asset(
+      'assets/images/save_banner.png',
+      width: double.infinity,
+      fit: BoxFit.fitWidth,
+    );
+  }
+
+  Widget _buildDealsHeader() {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          'Deals of the Day',
+          style: TextStyle(
+            color: ColorConstraint.lightNavy,
+            fontWeight: FontWeight.bold,
+            fontSize: Responsive.sp(14),
+          ),
+        ),
+        Text(
+          'More',
+          style: TextStyle(
+            color: ColorConstraint.primaryColor,
+            fontSize: Responsive.sp(14),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDealsGrid() {
+    return GridView.builder(
+      padding: EdgeInsets.zero,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: 6,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+        childAspectRatio: 0.8,
+      ),
+      itemBuilder: (context, index) {
+        return CustomProductWidget(
+          imagePath: 'assets/images/product.png',
+          title: 'Accu-check Active',
+          subtitle: 'Test Strip',
+          price: 200,
+          rating: 5,
+        );
+      },
     );
   }
 }

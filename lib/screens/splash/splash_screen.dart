@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:quickmedicalapp/routes/routes.dart';
-import 'package:quickmedicalapp/screens/onboarding_screens.dart/walk_through_scren.dart';
 import 'package:quickmedicalapp/utils/colorconstraint.dart';
 
 class SplashScreen extends StatefulWidget {

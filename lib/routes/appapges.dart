@@ -11,6 +11,6 @@ class AppPages {
     Routes.quickNumber: (context) => QuickPhoneNumberScreen(),
 
     Routes.walkthrough: (context) => const WalkThroughScreen(),
-    Routes.home: (context) => const MedicalStoreHomeScreen(),
+    Routes.home: (context) => HomeScreen(),
   };
 }
