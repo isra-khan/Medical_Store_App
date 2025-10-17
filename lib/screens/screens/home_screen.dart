@@ -136,7 +136,7 @@ class HomeScreen extends StatelessWidget {
       children: [
         const CircleAvatar(
           radius: 24,
-          backgroundImage: AssetImage('assets/images/profile.jpg'),
+          backgroundImage: AssetImage('assets/images/dr.jpg'),
         ),
         Row(
           children: [
@@ -266,7 +266,7 @@ class HomeScreen extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
-        childAspectRatio: 0.8,
+        childAspectRatio: 0.75,
       ),
       itemBuilder: (context, index) {
         return CustomProductWidget(

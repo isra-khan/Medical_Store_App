@@ -78,6 +78,14 @@ class CustomProductWidget extends StatelessWidget {
                         fontSize: Responsive.sp(10),
                       ),
                     ),
+                    Text(
+                      'Rs ${price.toString()}',
+                      style: TextStyle(
+                        color: Colors.black,
+
+                        fontSize: Responsive.sp(10),
+                      ),
+                    ),
                   ],
                 ),
               ), // Price
