@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quickmedicalapp/routes/routes.dart';
 import 'package:quickmedicalapp/screens/splash/widgets/custom_button.dart';
 import 'package:quickmedicalapp/utils/colorconstraint.dart';
 import 'package:quickmedicalapp/utils/responsiveness.dart';
@@ -132,7 +133,9 @@ class CartScreen extends StatelessWidget {
                 const SizedBox(height: 12),
                 CustomButton(
                   title: 'Place Order',
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, Routes.profile);
+                  },
                   bgColor: ColorConstraint.primaryColor,
                   textColor: ColorConstraint.secondaryColor,
                 ),
@@ -186,13 +189,16 @@ class CartScreen extends StatelessWidget {
               ),
               Text(
                 details,
-                style: const TextStyle(fontSize: 14, color: Colors.grey),
+                style: TextStyle(
+                  fontSize: Responsive.sp(14),
+                  color: Colors.grey,
+                ),
               ),
               const SizedBox(height: 4),
               Text(
                 price,
-                style: const TextStyle(
-                  fontSize: 16,
+                style: TextStyle(
+                  fontSize: Responsive.sp(16),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -212,11 +218,14 @@ class CartScreen extends StatelessWidget {
             Row(
               children: [
                 _buildQuantityButton(Icons.remove, isDecrease: true),
-                const Padding(
+                Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12.0),
                   child: Text(
                     '1',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: Responsive.sp(16),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 _buildQuantityButton(Icons.add, isDecrease: false),

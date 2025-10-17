@@ -5,4 +5,5 @@ class Routes {
   static String home = '/home';
   static String product_details = '/productdetails';
   static String add_cart = "/cart";
+  static String profile = "/profile";
 }
