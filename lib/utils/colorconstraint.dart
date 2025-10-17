@@ -8,4 +8,5 @@ class ColorConstraint {
   static Color lightBlack = Color(0xff090f4773).withOpacity(0.45);
   static Color lightGrey = Color.fromARGB(255, 221, 221, 227);
   static Color lightNavy = Color(0xff090F47);
+  static Color orangeColor = Color(0xffFFA41B);
 }

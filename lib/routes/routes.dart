@@ -3,4 +3,5 @@ class Routes {
   static String splash = '/';
   static String walkthrough = '/walkthrough';
   static String home = '/home';
+  static String product_details = '/productdetails';
 }

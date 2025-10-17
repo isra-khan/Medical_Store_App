@@ -50,7 +50,7 @@ class QuickPhoneNumberScreen extends StatelessWidget {
               borderRadius: 56,
               title: 'Continue',
               onPressed: () {
-                Navigator.pushNamed(context, Routes.home);
+                Navigator.pushNamed(context, Routes.product_details);
               },
               bgColor: ColorConstraint.primaryColor,
               textColor: ColorConstraint.secondaryColor,

@@ -3,6 +3,7 @@ import 'package:quickmedicalapp/routes/routes.dart';
 import 'package:quickmedicalapp/screens/onboarding_screens.dart/quick_phonenumber_screen.dart';
 import 'package:quickmedicalapp/screens/onboarding_screens.dart/walk_through_scren.dart';
 import 'package:quickmedicalapp/screens/screens/home_screen.dart';
+import 'package:quickmedicalapp/screens/screens/product_details_screen.dart';
 import 'package:quickmedicalapp/screens/splash/splash_screen.dart';
 
 class AppPages {
@@ -12,5 +13,6 @@ class AppPages {
 
     Routes.walkthrough: (context) => const WalkThroughScreen(),
     Routes.home: (context) => HomeScreen(),
+    Routes.product_details: (context) => ProductDetailsScreen(),
   };
 }
